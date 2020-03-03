@@ -289,7 +289,7 @@ namespace FluentMigrator.NHibernate
                 {
                     From = f,
                     To = to.Columns.FirstOrDefault(t => AreSameColumnName(f, t))
-                }).Where(x => !AreSameColumnDef(x.From, x.To)).ToList();
+                }).Where(x => x.From != null && x.To != null && !AreSameColumnDef(x.From, x.To)).ToList();
             var updatedCols = matches
                 .Select(x => new AlterColumnExpression
                 {
